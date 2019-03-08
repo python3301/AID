@@ -1,0 +1,125 @@
+一.关于GIT
+    1.什么是git:
+        是一个开源的分布式版本控制系统，用于高效的管理大小项目和
+        文件。
+    2.什么是代码管理工具
+        *防止代码丢失，做备份
+        *代码的版本管控，通过设置节点在多个版本间切换
+        *建立分支各自开发，互不影响，方便合并
+        *多人协同，方便代码的共享传输
+        
+    3.git特点
+        *git是开源的，多在*nix下使用，可以管理各种文件
+        *git是分布式管理工具(svn是集中式)
+        *git每台主机都有完整代码，数据安全，，分享速度快
+        *git拥有更好的分支支持，方便多人协同工作
+
+        git的安装：sudo apt-get install git
+
+二.git的使用
+
+    1.几个概念
+    
+        【1】工作区：项目所在操作目录，项目操作的区域
+        【2】暂存区：用于记录工作区的工作(修改)内容
+        【3】仓库区：用于将记录的工作内容备份
+        【4】远程仓库：远程主机上的GIT仓库
+    
+    2.git的初始化配置
+        命令： git config
+        【1】配置系统所有用户：git config --system[选项]
+            配置文件位置：/etc/gitconfig
+        【2】配置当前用户：git config --global[选项]
+            配置文件：~/.gitconfig
+        【3】配置当前项目：git config[选项]
+            配置文件：项目目录/.git/config
+            *要求必须在项目目录下执行
+        
+        配置用户名
+            e.g.配置用户名为Tedu
+            sudo git config --system user.name Tedu
+        
+        配置用户邮箱
+            e.g.配置用户邮箱
+            git config --global user.email lvze@tedu.cn
+        配置编译器
+            e.g.为当前项目配置编译器
+            git config core.editor vscode
+        查看项目配置信息
+    
+    3.git基本操作
+        【1】初始化仓库：git init
+            意义：将某个项目目录变为git操作目录，生成git本地仓库。
+            该目录即可使用git进行管理
+        【2】查看分支状态:git status
+            说明：初始默认工作分支为master,当工作区和仓库不一致时，
+            会有相应提示信息。
+        【3】将工作区内容记录到暂存区：git add[files]
+            e.g.将file1 file2 提交 
+                git add file1 file2
+            e.g.提交当前目录下所有文件
+                git add *
+        【4】取消暂存记录：git rm --cached[file]
+        【5】将文件同步到本地仓库区：git commit -m[message]
+            说明：每次同步都需要添加一定的同步信息，commit
+            操作只能同步暂存区已经记录的内容。
+        
+        【6】查看commit日志
+            git log
+            git log --pretty=oneline
+        
+        【7】文件比较： git diff [file]
+            说明：用于比较工作区文件和仓库的差异
+        【8】放弃工作区修改：git ckeckout --[file]
+
+        【9】从仓库恢复文件：git checkout [file]
+        
+        【10】移动或删除文件并提交暂存
+            git mv [file] [path] 移动文件
+            git rm [file] [path] 删除文件
+
+4.版本控制命令
+    【1】退回到上一个的commit节点：git reset --hard HEAD^
+        说明：HEAD是一个commit指针，一个^表示后退一个commit
+    【2】去往指定的commit操作节点：
+        git reset --hard[commit_id]
+    【3】查看全部历史操作：git reflog
+        说明：利用该操作可以使用reset去往任意历史位置
+    【4】标签创建：git tag [名称]-m [message]
+        标签：在工作的重要位置添加的快照，保存当时的工作状态
+        一般用于版本迭代等。
+        
+        注意：标签的message信息可以不写，但是最好添加。
+        
+        将标签添加到指定的commit_id:
+            git tag [名称] [commit_id] -m [message]
+    【5】查看标签
+        git tag 查看标签列表
+        git show [tag_name] 查看标签具体信息
+    【6】去往某个标签节点：git reset --hard[tag]
+    【7】 删除标签：git tag -d [tag]
+
+5.临时工作区
+    【1】创建临时保存工作区:git stash
+        说明：将工作区未提交的修改封存，让工作区回到修改前状态
+    【2】查看临时工作区列表：git stash list
+        说明：最新的工作区记录为stash{0}依次排列
+    【3】应用某个保存的工作区：git stash apply [stash]
+    【4】删除工作
+        git stash drop [stash] 删除某一个工作区
+        git stash clear 删除所有保存的工作区
+
+作业：1.建立git仓库，重复练习所有git命令
+     2.登录github.com网站 注册账号
+     
+
+
+
+
+
+
+
+
+
+
+
